@@ -172,7 +172,7 @@ const Index = () => {
               <img 
                 src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
                 alt="2Archive Logo" 
-                className="w-16 h-16 rounded-lg shadow-md"
+                className="w-24 h-16 rounded-lg shadow-md object-cover"
               />
             </div>
             <div className="text-right">
@@ -413,17 +413,44 @@ const Index = () => {
         {/* Footer */}
         <div className="bg-white border-t border-gray-200 mt-8">
           <div className="container mx-auto px-6 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
               <div className="text-center md:text-left">
-                <h3 className="font-bold text-primary mb-2">Поддержка</h3>
+                <h3 className="font-bold text-primary mb-3">Поддержка</h3>
                 <p className="text-sm text-muted-foreground mb-1">
                   <Icon name="Phone" size={14} className="inline mr-2" />
                   +7 (800) 555-20-24
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground mb-4">
                   <Icon name="Mail" size={14} className="inline mr-2" />
                   2Archive@mail.ru
                 </p>
+                
+                <div className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="font-semibold mb-2">Федеральное государственное автономное образовательное учреждение высшего образования «Томский Государственный университет систем управления и радиоэлектроники»</p>
+                  
+                  <div className="space-y-1 mb-3">
+                    <p className="flex items-center">
+                      <Icon name="MapPin" size={12} className="mr-2" />
+                      634050, г.Томск, пр. Ленина, 40
+                    </p>
+                    <p className="flex items-center">
+                      <Icon name="Phone" size={12} className="mr-2" />
+                      (3822) 51-05-30
+                    </p>
+                    <p className="flex items-center">
+                      <Icon name="Printer" size={12} className="mr-2" />
+                      (3822) 51-32-62
+                    </p>
+                    <p className="flex items-center">
+                      <Icon name="Mail" size={12} className="mr-2" />
+                      office@tusur.ru
+                    </p>
+                    <p className="flex items-center">
+                      <Icon name="Clock" size={12} className="mr-2" />
+                      пн. - пт., 8:30 - 17:30, обед 13:00 - 14:00
+                    </p>
+                  </div>
+                </div>
               </div>
               
               <div className="text-center">
@@ -437,6 +464,13 @@ const Index = () => {
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">Сканируйте для входа</p>
               </div>
+            </div>
+            
+            {/* Copyright notice */}
+            <div className="border-t border-gray-200 mt-6 pt-4">
+              <p className="text-xs text-muted-foreground text-center leading-relaxed">
+                При полном или частичном использовании текстовых или графических материалов с сайта Edu.tusur.ru или с сайта 2ArchiveTusur.ru активная ссылка на сайт ТУСУРа и на сайт 2Archive обязательна.
+              </p>
             </div>
           </div>
         </div>
