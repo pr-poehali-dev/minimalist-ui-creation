@@ -165,12 +165,22 @@ const Index = () => {
       <div className="bg-white border-b shadow-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-4xl font-black text-primary tracking-tight">
+            <h1 className="text-5xl font-black text-primary tracking-tight">
               ТУСУР
             </h1>
-            <div className="text-right">
-              <p className="text-lg font-semibold text-foreground">Иванов Иван Иванович</p>
-              <p className="text-sm text-muted-foreground">Группа 151</p>
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <img 
+                  src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
+                  alt="2Archive Logo" 
+                  className="w-16 h-16 mx-auto mb-2 rounded-lg shadow-md"
+                />
+                <div className="text-2xl font-bold text-primary">2Archive</div>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-semibold text-foreground">Иванов Иван Иванович</p>
+                <p className="text-sm text-muted-foreground">Группа 151</p>
+              </div>
             </div>
           </div>
         </div>
@@ -408,6 +418,45 @@ const Index = () => {
             </div>
           </div>
         )}
+        </div>
+
+        {/* Footer */}
+        <div className="bg-white border-t border-gray-200 mt-8">
+          <div className="container mx-auto px-6 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+              <div className="text-center md:text-left">
+                <h3 className="font-bold text-primary mb-2">Поддержка</h3>
+                <p className="text-sm text-muted-foreground mb-1">
+                  <Icon name="Phone" size={14} className="inline mr-2" />
+                  +7 (800) 555-20-24
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <Icon name="Mail" size={14} className="inline mr-2" />
+                  2Archive@mail.ru
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="inline-flex items-center gap-3">
+                  <img 
+                    src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
+                    alt="2Archive Logo" 
+                    className="w-12 h-12 rounded-lg shadow-sm"
+                  />
+                  <div className="text-xl font-bold text-primary">2Archive</div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">Образовательная платформа ТУСУР</p>
+              </div>
+              
+              <div className="text-center md:text-right">
+                <h3 className="font-bold text-primary mb-2">QR-код для быстрого доступа</h3>
+                <div className="inline-block w-16 h-16 bg-gray-200 border-2 border-dashed border-gray-400 rounded flex items-center justify-center">
+                  <Icon name="QrCode" size={24} className="text-gray-400" />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">Сканируйте для входа</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
