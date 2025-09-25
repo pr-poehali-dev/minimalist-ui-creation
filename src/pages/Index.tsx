@@ -168,19 +168,16 @@ const Index = () => {
             <h1 className="text-5xl font-black text-primary tracking-tight">
               ТУСУР
             </h1>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <img 
-                  src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
-                  alt="2Archive Logo" 
-                  className="w-16 h-16 mx-auto mb-2 rounded-lg shadow-md"
-                />
-                <div className="text-2xl font-bold text-primary">2Archive</div>
-              </div>
-              <div className="text-right">
-                <p className="text-lg font-semibold text-foreground">Иванов Иван Иванович</p>
-                <p className="text-sm text-muted-foreground">Группа 151</p>
-              </div>
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <img 
+                src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
+                alt="2Archive Logo" 
+                className="w-16 h-16 rounded-lg shadow-md"
+              />
+            </div>
+            <div className="text-right">
+              <p className="text-lg font-semibold text-foreground">Иванов Иван Иванович</p>
+              <p className="text-sm text-muted-foreground">Группа 151</p>
             </div>
           </div>
         </div>
@@ -343,15 +340,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Floating Action Buttons */}
-        <div className="fixed bottom-6 right-6 flex flex-col gap-3">
-          <Button
-            size="lg"
-            className="w-14 h-14 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-all duration-300 shadow-lg"
-            onClick={() => setShowChat(false)}
-          >
-            <Icon name="HelpCircle" size={24} />
-          </Button>
+        {/* Floating Action Button */}
+        <div className="fixed bottom-6 right-6">
           <Button
             size="lg"
             className="w-14 h-14 rounded-full bg-accent/90 hover:bg-accent text-accent-foreground transition-all duration-300 shadow-lg"
@@ -437,15 +427,7 @@ const Index = () => {
               </div>
               
               <div className="text-center">
-                <div className="inline-flex items-center gap-3">
-                  <img 
-                    src="/img/f664e02c-e2b8-4cc0-a29e-6fb48bf50940.jpg" 
-                    alt="2Archive Logo" 
-                    className="w-12 h-12 rounded-lg shadow-sm"
-                  />
-                  <div className="text-xl font-bold text-primary">2Archive</div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-2">Образовательная платформа ТУСУР</p>
+                <p className="text-sm text-muted-foreground">Образовательная платформа ТУСУР</p>
               </div>
               
               <div className="text-center md:text-right">
