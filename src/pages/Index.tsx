@@ -203,7 +203,7 @@ const Index = () => {
       <div className="bg-white border-b shadow-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-5xl font-black text-primary tracking-tight">
+            <h1 className="text-5xl font-black text-primary tracking-tight px-[58px] py-0 my-0">
               ТУСУР
             </h1>
             <div className="absolute left-1/2 transform -translate-x-1/2">
@@ -231,7 +231,7 @@ const Index = () => {
           <div className="container mx-auto px-6 py-8">
 
           {/* Navigation */}
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-16 mx-12 px-[41px]">
             <div className="bg-white/10 backdrop-blur-lg rounded-full p-2 border border-white/20">
               <div className="flex gap-2">
                 {navigationItems.map(item => (
@@ -283,15 +283,15 @@ const Index = () => {
 
             {activeTab === 'files' && (
               <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-8">
+                <div className="text-center my-3.5">
                   <Icon name="FileText" size={48} className="mx-auto mb-4 text-accent" />
                   <h2 className="text-2xl font-bold mb-4 text-white">Файлы</h2>
-                  <p className="text-white/80 text-5xl">Поиск </p>
+                  <p className="text-white/80 text-lg">Поиск </p>
                 </div>
                 
                 {/* Upload Zone */}
                 <Card className="bg-white/10 backdrop-blur border-white/20 border-dashed border-2 mb-6">
-                  <div className="p-8 text-center">
+                  <div className="p-8 text-center px-2 py-1">
                     <Icon name="Upload" size={48} className="mx-auto mb-4 text-accent" />
                     <h3 className="text-lg font-semibold text-white mb-2">Загрузите или перетащите файл для добавления</h3>
                     <p className="text-white/70 text-sm">Поддерживаемые форматы: PDF, DOCX, PPTX, TXT</p>
@@ -306,7 +306,7 @@ const Index = () => {
                   {fileStructure.map((item) => (
                     <Card key={item.name} className="bg-white/10 backdrop-blur border-white/20">
                       <div 
-                        className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/20 transition-all"
+                        className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/20 transition-all px-4 py-2.5"
                         onClick={() => toggleFolder(item.name)}
                       >
                         <div className="flex items-center gap-3">
