@@ -359,7 +359,7 @@ const Index = () => {
                     <div key={group.id}>
                       <div className="flex items-center gap-3 mb-4">
                         <Icon name="Users" size={24} className="text-accent" />
-                        <h3 className="text-xl font-bold text-white">Производственная практика</h3>
+                        <h3 className="text-xl font-bold text-white">Группа 151</h3>
                         <Badge className="bg-accent/20 text-accent">14 студентов</Badge>
                       </div>
                       
