@@ -286,7 +286,7 @@ const Index = () => {
                 <div className="text-center mb-8">
                   <Icon name="FileText" size={48} className="mx-auto mb-4 text-accent" />
                   <h2 className="text-2xl font-bold mb-4 text-white">Файлы</h2>
-                  <p className="text-white/80">Учебные материалы и лекции</p>
+                  <p className="text-white/80 text-5xl">Поиск </p>
                 </div>
                 
                 {/* Upload Zone */}
