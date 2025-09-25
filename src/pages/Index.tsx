@@ -88,31 +88,69 @@ const Index = () => {
     }
   ];
 
-  const students: Student[] = [
+  const groups = [
     {
       id: 1,
-      name: 'Петров Сергей Александрович',
-      uploadedFiles: ['Лабораторная работа №1.docx', 'Курсовой проект.pdf']
+      name: '151',
+      students: [
+        {
+          id: 1,
+          name: 'Петров Сергей Александрович',
+          uploadedFiles: ['Лабораторная работа №1.docx', 'Курсовой проект.pdf']
+        },
+        {
+          id: 2,
+          name: 'Сидорова Анна Владимировна',
+          uploadedFiles: ['Реферат по физике.pdf', 'Практическая работа №3.docx']
+        },
+        {
+          id: 3,
+          name: 'Козлов Дмитрий Игоревич',
+          uploadedFiles: ['Лабораторная работа №2.docx']
+        },
+        {
+          id: 4,
+          name: 'Морозова Екатерина Сергеевна',
+          uploadedFiles: ['Курсовая работа.pdf', 'Отчет по практике.docx']
+        }
+      ]
     },
     {
       id: 2,
-      name: 'Сидорова Анна Владимировна',
-      uploadedFiles: ['Реферат по физике.pdf', 'Практическая работа №3.docx', 'Презентация.pptx']
+      name: '152',
+      students: [
+        {
+          id: 5,
+          name: 'Волков Алексей Николаевич',
+          uploadedFiles: ['Лабораторная работа №3.docx', 'Реферат по истории.pdf']
+        },
+        {
+          id: 6,
+          name: 'Новикова Ольга Петровна',
+          uploadedFiles: ['Курсовая работа.docx']
+        },
+        {
+          id: 7,
+          name: 'Смирнов Антон Владимирович',
+          uploadedFiles: ['Лабораторная работа №1.pdf', 'Презентация.pptx']
+        }
+      ]
     },
     {
       id: 3,
-      name: 'Козлов Дмитрий Игоревич',
-      uploadedFiles: ['Лабораторная работа №2.docx']
-    },
-    {
-      id: 4,
-      name: 'Морозова Екатерина Сергеевна',
-      uploadedFiles: ['Курсовая работа.pdf', 'Отчет по практике.docx', 'Тестовое задание.pdf', 'Дипломная работа.pdf']
-    },
-    {
-      id: 5,
-      name: 'Волков Алексей Николаевич',
-      uploadedFiles: ['Лабораторная работа №3.docx', 'Реферат по истории.pdf']
+      name: '153',
+      students: [
+        {
+          id: 8,
+          name: 'Лебедев Максим Сергеевич',
+          uploadedFiles: ['Дипломная работа.pdf']
+        },
+        {
+          id: 9,
+          name: 'Карпова Мария Александровна',
+          uploadedFiles: ['Реферат.pdf', 'Лабораторная работа №2.docx', 'Отчет.pdf']
+        }
+      ]
     }
   ];
 
@@ -251,6 +289,19 @@ const Index = () => {
                   <p className="text-white/80">Учебные материалы и лекции</p>
                 </div>
                 
+                {/* Upload Zone */}
+                <Card className="bg-white/10 backdrop-blur border-white/20 border-dashed border-2 mb-6">
+                  <div className="p-8 text-center">
+                    <Icon name="Upload" size={48} className="mx-auto mb-4 text-accent" />
+                    <h3 className="text-lg font-semibold text-white mb-2">Загрузите или перетащите файл для добавления</h3>
+                    <p className="text-white/70 text-sm">Поддерживаемые форматы: PDF, DOCX, PPTX, TXT</p>
+                    <Button className="mt-4 bg-accent hover:bg-accent/80 text-accent-foreground">
+                      <Icon name="Upload" size={16} className="mr-2" />
+                      Выбрать файл
+                    </Button>
+                  </div>
+                </Card>
+
                 <div className="grid gap-4">
                   {fileStructure.map((item) => (
                     <Card key={item.name} className="bg-white/10 backdrop-blur border-white/20">
@@ -303,36 +354,50 @@ const Index = () => {
                   <Badge className="mt-4 bg-destructive">2 новых сообщения</Badge>
                 </div>
                 
-                <div className="grid gap-4">
-                  {students.map((student) => (
-                    <Card key={student.id} className="bg-white/10 backdrop-blur border-white/20 p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                            <Icon name="User" size={20} className="text-accent" />
-                          </div>
-                          <div>
-                            <h3 className="font-semibold text-white">{student.name}</h3>
-                            <p className="text-sm text-white/60">Группа 151</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-white/20 text-white">
-                          {student.uploadedFiles.length} файлов
+                <div className="space-y-6">
+                  {groups.map((group) => (
+                    <div key={group.id}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Icon name="Users" size={24} className="text-accent" />
+                        <h3 className="text-xl font-bold text-white">Группа {group.name}</h3>
+                        <Badge className="bg-accent/20 text-accent">
+                          {group.students.length} студентов
                         </Badge>
                       </div>
                       
-                      <div>
-                        <h4 className="text-sm font-medium text-white/80 mb-2">Загруженные файлы:</h4>
-                        <div className="space-y-2">
-                          {student.uploadedFiles.map((file, index) => (
-                            <div key={index} className="flex items-center gap-2 p-2 rounded bg-white/5">
-                              <Icon name="FileText" size={14} className="text-white/60" />
-                              <span className="text-xs text-white/70">{file}</span>
+                      <div className="grid gap-4">
+                        {group.students.map((student) => (
+                          <Card key={student.id} className="bg-white/10 backdrop-blur border-white/20 p-6">
+                            <div className="flex items-start justify-between mb-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                                  <Icon name="User" size={20} className="text-accent" />
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-white">{student.name}</h4>
+                                  <p className="text-sm text-white/60">Группа {group.name}</p>
+                                </div>
+                              </div>
+                              <Badge className="bg-white/20 text-white">
+                                {student.uploadedFiles.length} файлов
+                              </Badge>
                             </div>
-                          ))}
-                        </div>
+                            
+                            <div>
+                              <h5 className="text-sm font-medium text-white/80 mb-2">Загруженные файлы:</h5>
+                              <div className="space-y-2">
+                                {student.uploadedFiles.map((file, index) => (
+                                  <div key={index} className="flex items-center gap-2 p-2 rounded bg-white/5">
+                                    <Icon name="FileText" size={14} className="text-white/60" />
+                                    <span className="text-xs text-white/70">{file}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </Card>
+                        ))}
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -454,15 +519,15 @@ const Index = () => {
               </div>
               
               <div className="text-center">
-                <p className="text-sm text-muted-foreground">Образовательная платформа ТУСУР</p>
+                <h3 className="font-bold text-primary mb-3">QR-код для быстрого доступа</h3>
+                <div className="inline-block w-24 h-24 bg-gray-200 border-2 border-dashed border-gray-400 rounded-lg flex items-center justify-center">
+                  <Icon name="QrCode" size={32} className="text-gray-400" />
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">Сканируйте для входа</p>
               </div>
               
               <div className="text-center md:text-right">
-                <h3 className="font-bold text-primary mb-2">QR-код для быстрого доступа</h3>
-                <div className="inline-block w-16 h-16 bg-gray-200 border-2 border-dashed border-gray-400 rounded flex items-center justify-center">
-                  <Icon name="QrCode" size={24} className="text-gray-400" />
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">Сканируйте для входа</p>
+                <p className="text-sm text-muted-foreground">Образовательная платформа ТУСУР</p>
               </div>
             </div>
             
