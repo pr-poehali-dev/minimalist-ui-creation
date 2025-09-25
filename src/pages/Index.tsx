@@ -13,6 +13,19 @@ interface Message {
   timestamp: Date;
 }
 
+interface FileItem {
+  name: string;
+  type: 'file' | 'folder';
+  count?: number;
+  files?: FileItem[];
+}
+
+interface Student {
+  id: number;
+  name: string;
+  uploadedFiles: string[];
+}
+
 const Index = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [showChat, setShowChat] = useState(false);
@@ -25,6 +38,83 @@ const Index = () => {
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
+  const [openFolders, setOpenFolders] = useState<string[]>([]);
+
+  const fileStructure: FileItem[] = [
+    {
+      name: 'Лекции',
+      type: 'folder',
+      count: 20,
+      files: Array.from({ length: 20 }, (_, i) => ({
+        name: `Лекция ${i + 1}.pdf`,
+        type: 'file'
+      }))
+    },
+    {
+      name: 'Математика',
+      type: 'folder',
+      count: 13,
+      files: Array.from({ length: 13 }, (_, i) => ({
+        name: `Математика_${i + 1}.pdf`,
+        type: 'file'
+      }))
+    },
+    {
+      name: 'Физика',
+      type: 'folder',
+      count: 8,
+      files: Array.from({ length: 8 }, (_, i) => ({
+        name: `Физика_лекция_${i + 1}.pdf`,
+        type: 'file'
+      }))
+    },
+    {
+      name: 'Информатика',
+      type: 'folder',
+      count: 15,
+      files: Array.from({ length: 15 }, (_, i) => ({
+        name: `Информатика_${i + 1}.pdf`,
+        type: 'file'
+      }))
+    },
+    {
+      name: 'История',
+      type: 'folder',
+      count: 6,
+      files: Array.from({ length: 6 }, (_, i) => ({
+        name: `История_тема_${i + 1}.pdf`,
+        type: 'file'
+      }))
+    }
+  ];
+
+  const students: Student[] = [
+    {
+      id: 1,
+      name: 'Петров Сергей Александрович',
+      uploadedFiles: ['Лабораторная работа №1.docx', 'Курсовой проект.pdf']
+    },
+    {
+      id: 2,
+      name: 'Сидорова Анна Владимировна',
+      uploadedFiles: ['Реферат по физике.pdf', 'Практическая работа №3.docx', 'Презентация.pptx']
+    },
+    {
+      id: 3,
+      name: 'Козлов Дмитрий Игоревич',
+      uploadedFiles: ['Лабораторная работа №2.docx']
+    },
+    {
+      id: 4,
+      name: 'Морозова Екатерина Сергеевна',
+      uploadedFiles: ['Курсовая работа.pdf', 'Отчет по практике.docx', 'Тестовое задание.pdf', 'Дипломная работа.pdf']
+    },
+    {
+      id: 5,
+      name: 'Волков Алексей Николаевич',
+      uploadedFiles: ['Лабораторная работа №3.docx', 'Реферат по истории.pdf']
+    }
+  ];
 
   const navigationItems = [
     { id: 'home', label: 'Главная', icon: 'Home' },
@@ -61,23 +151,39 @@ const Index = () => {
     setInputMessage('');
   };
 
+  const toggleFolder = (folderName: string) => {
+    setOpenFolders(prev => 
+      prev.includes(folderName) 
+        ? prev.filter(name => name !== folderName)
+        : [...prev, folderName]
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-secondary to-primary relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(120,119,198,0.3),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.3),transparent_50%)]"></div>
-      
-      <div className="relative z-10">
-        {/* Header */}
-        <div className="container mx-auto px-6 py-8">
-          <div className="text-center mb-12">
-            <h1 className="text-6xl font-black text-white mb-6 tracking-tight">
+    <div className="min-h-screen bg-background">
+      {/* White Header */}
+      <div className="bg-white border-b shadow-sm">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-4xl font-black text-primary tracking-tight">
               ТУСУР
             </h1>
-            <p className="text-xl text-white/80 font-light">
-              Образовательная платформа с ИИ-помощником
-            </p>
+            <div className="text-right">
+              <p className="text-lg font-semibold text-foreground">Иванов Иван Иванович</p>
+              <p className="text-sm text-muted-foreground">Группа 151</p>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-primary via-secondary to-primary relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(120,119,198,0.3),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.3),transparent_50%)]"></div>
+        
+        <div className="relative z-10">
+          {/* Content */}
+          <div className="container mx-auto px-6 py-8">
 
           {/* Navigation */}
           <div className="flex justify-center mb-16">
@@ -131,19 +237,97 @@ const Index = () => {
             )}
 
             {activeTab === 'files' && (
-              <div className="text-center text-white">
-                <Icon name="FileText" size={48} className="mx-auto mb-4 text-accent" />
-                <h2 className="text-2xl font-bold mb-4">Файлы</h2>
-                <p className="text-white/80">Здесь будут размещены учебные материалы</p>
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                  <Icon name="FileText" size={48} className="mx-auto mb-4 text-accent" />
+                  <h2 className="text-2xl font-bold mb-4 text-white">Файлы</h2>
+                  <p className="text-white/80">Учебные материалы и лекции</p>
+                </div>
+                
+                <div className="grid gap-4">
+                  {fileStructure.map((item) => (
+                    <Card key={item.name} className="bg-white/10 backdrop-blur border-white/20">
+                      <div 
+                        className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/20 transition-all"
+                        onClick={() => toggleFolder(item.name)}
+                      >
+                        <div className="flex items-center gap-3">
+                          <Icon 
+                            name={openFolders.includes(item.name) ? "FolderOpen" : "Folder"} 
+                            size={24} 
+                            className="text-accent" 
+                          />
+                          <span className="font-medium text-white">{item.name}</span>
+                          <Badge className="bg-white/20 text-white">
+                            {item.count} файлов
+                          </Badge>
+                        </div>
+                        <Icon 
+                          name={openFolders.includes(item.name) ? "ChevronUp" : "ChevronDown"} 
+                          size={20} 
+                          className="text-white/60" 
+                        />
+                      </div>
+                      
+                      {openFolders.includes(item.name) && item.files && (
+                        <div className="border-t border-white/20 bg-white/5">
+                          <div className="max-h-48 overflow-y-auto">
+                            {item.files.map((file, index) => (
+                              <div key={index} className="flex items-center gap-3 p-3 hover:bg-white/10 transition-all">
+                                <Icon name="FileText" size={16} className="text-white/60" />
+                                <span className="text-sm text-white/80">{file.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </Card>
+                  ))}
+                </div>
               </div>
             )}
 
             {activeTab === 'group' && (
-              <div className="text-center text-white">
-                <Icon name="Users" size={48} className="mx-auto mb-4 text-accent" />
-                <h2 className="text-2xl font-bold mb-4">Группа</h2>
-                <p className="text-white/80">Общение с одногруппниками</p>
-                <Badge className="mt-4 bg-destructive">2 новых сообщения</Badge>
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                  <Icon name="Users" size={48} className="mx-auto mb-4 text-accent" />
+                  <h2 className="text-2xl font-bold mb-4 text-white">Группа 151</h2>
+                  <p className="text-white/80">Студенты и их загруженные файлы</p>
+                  <Badge className="mt-4 bg-destructive">2 новых сообщения</Badge>
+                </div>
+                
+                <div className="grid gap-4">
+                  {students.map((student) => (
+                    <Card key={student.id} className="bg-white/10 backdrop-blur border-white/20 p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                            <Icon name="User" size={20} className="text-accent" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-white">{student.name}</h3>
+                            <p className="text-sm text-white/60">Группа 151</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-white/20 text-white">
+                          {student.uploadedFiles.length} файлов
+                        </Badge>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-sm font-medium text-white/80 mb-2">Загруженные файлы:</h4>
+                        <div className="space-y-2">
+                          {student.uploadedFiles.map((file, index) => (
+                            <div key={index} className="flex items-center gap-2 p-2 rounded bg-white/5">
+                              <Icon name="FileText" size={14} className="text-white/60" />
+                              <span className="text-xs text-white/70">{file}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
               </div>
             )}
           </div>
